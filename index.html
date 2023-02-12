@@ -1,0 +1,876 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Laravel with Vue</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
+        integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.min.css"
+        integrity="sha512-q3eWabyZPc1XTCmF+8/LuE1ozpg5xxn7iO89yfSOd5/oKvyqLngoNGsx8jq92Y8eXJ/IRxQbEC+FGSYxtk2oiw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Lustria&amp;family=PT+Sans+Narrow:wght@400;700&amp;display=swap"
+        rel="stylesheet">
+</head>
+ <link rel="stylesheet" href="./css/style.css">
+
+<body>
+    <div class="container-fluid">
+        <div class="row border mt-2 ml-1 mr-1 d-flex align-items-center shadow">
+            <div class="col-md-3 p-2 text-left">
+                <img src="https://oursblanc.tech/wp-content/uploads/2020/12/logolaravel-e1607524036663.png"
+                    height="80px" />
+
+            </div>
+            <div class="col-md-6 text-center">
+                <h2 class=" first-title">Crud App With Laravel and Vue js</h2>
+            </div>
+            <div class="col-md-3 p-2 text-right">
+                <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBxISEhUSEA8VEBIVEA8VFRAPEBUPDw8VFRUWFhUVFRUYHSggGBolHRUVITEhJSkrLi4uFx8zODMsNygtLisBCgoKDg0OGhAQFy0dHR0tLS0tLS0tLS0tKy0tLS0tLS0tLi0tLTUvKy0rKy8tLS0rLS0rLS0rKystLS0tLS0tLv/AABEIALcBEwMBIgACEQEDEQH/xAAaAAADAQEBAQAAAAAAAAAAAAAAAQIDBQQG/8QANhAAAgECBAQEBAQFBQAAAAAAAAECAxEEEiExBUFRYQYTIoFxkbHRFDLB8CNCgpLhBxVyoaP/xAAaAQEBAQEBAQEAAAAAAAAAAAACAQMABQQG/8QAKBEBAQACAgIBAwIHAAAAAAAAAAECEQMhEjFRBBNBMuEiQmFxkaHR/9oADAMBAAIRAxEAPwDUBiZnH5MxolFI1xSwwAb2NYkRImRbIK0xrMRUhIUbQmJjDKOEQ7FRgPKaR3klRFlRoRIcdKzkiWaSM2KNcQJjExwwIYixQACHFAhgJYLjjMkBOaZh3IKgVLCkTJ6FGdQUKJEMSHDAAAldSwWGNH5WR4dy0Vh2GxGkg72BXBkyHs5BJibJEWVtMYQWKSGkOFslEMhYGkieRAx2E0aRxWIsWyGhQ4ipvYhmkkZijbECYxMcMCGhWLFA5RsIQ4oEMaQlKw4wHY0Km2eUuw2hqLepUZSJkrlMib5DhRFhzjYQDaEBSiBdudYQXE2fl5XgSbJibFmEy7bTEhMpIEhw9pEaNCaHIsySmNMgLjh6ashk5mLMzSV0xNsQjWFFtXVvmXymPs+oSYFTi4RlJq6Su7auy6HP/wB3p9/7R48mN9VccLl+mbe4hk0MVGorx62ataxozWdrqy6rKaEkeZ8Up937aM9GDrKrfInpa7astSfcxnutbjljN2LihyN/w8ui+Zg3v8Wu2m4sOTHL9N2zmW/SWZGpm2axriQ0xCEa0zQxuNTZU01bBSsRmf7RVxIzZM1zNWFhQpXnEatdiZocOUlICQLpXVzCkxDPyseLIlgDAUMxxJQ0axLFMVhsDSJGcoiylskWmmOVZiZUyWKNoaNsNUs7cn9TAbLljMsdV1m3SPkuL4Pyqmn5Zax7dV7fY+pw9TMu63MOKYPzabj/ADLWL79PfY+HC3DLVL6fl+3n36r5nh+J8uV3+V6P7nQ4ri7RyreXf+X/AD9zjNBKTe7vol8j7ZnZNPSy4ZlnMhGLbSSu20klzbPseHYRUoKPPeT6ye/29jj+HcHd+bJaR0j3fN+369j6Fs+Tmy3dPj+s5d3wn4YYyrZWX5paLt1ft9jxZUtFtyK8zO3L2XaP+dwaPR+m4vDDv3WOE8WctjM2sRKB9UbY1ADcSRHDEwASwZiozIBidppm7FXMrlQkVNKaEojuuv1HyE6MXADUC7Lb2CYAz8rHkEwBgOFDsNIkqLNYlMEAI0iRMkSVIkZ4s2xMbQmWN4EhiTGaRWtKWV9uZ7TwJnowtS6t0+h831PH15xnlHC8Q4PLLzIr0yevaX+f0ZzcNQc5KEd2/l1Z9jiqCqQcJbNfJ8mc/gnDnTzSmvW24rtFPf3+xljy6x/q+3j+q1xd+46NCioRUY7JWX3PNxCr/Iuesu0env8Aoz1VaiinJ7JHJu23KW7d326L2F9LxeeXlfUfLx4+V3WkWaGA0z1o2uLUTIiypMSaSZyRoZtiaYkDAGI4QMAYlKwMAFFNMuHQlIqC5lQ3foAOIFc9gADPyseRCY2xMEOFCC4AxwjzDTJQGsdpYimEWjSDESRLXYshiaY1m0MbEONNrihRk07rkUyWh6lmqm3vjK6uhnmws7en5fY0xVbLG/PZLq3+7+x5efFcc/FnrvTx46rmllW0dX3lyXt+vYwYKFu/Vvdt7saR6vFhMMZH14ySEESlEvIu5tFtQipDSQMSbQzI1ImI8UgMTEcCYpAAlIEAMUVVy4sziXDcqKAbA5HqAAZ+WjySAGA4UIQwHCA4iQXNY6xYgBGkGCRLKZDEcZthc2w1JSqQjKWWMqkIylvlUpJN+17nu8UcIWFr+VGUpQdOM4ynbNZtpptJJtOL5bNFl70+mYW4+X4jmxkO51+A8DhXo4itVqSpwowbUo2aclFylmutUko6K2+5w4Sukx45S3Xw7Ljskt/LZ9ia0nKV3okrJfV/voEWJsfjLZfzBk7JokJs6nCuDedRrVvPhT8mLeSW8tL6u/pT2T11uK5Sd1rjjcuo5sEMiEi5I0g6K5M5IHojIUKYrzGZVhxi+gjnSco8hWV9Cyu2xydyWa2JlEUWVFhqFysvYpIS7Tk7/UpKwMaEmyAlsClp7QYAflY8gmAAOFCAAHChCZTYjSEUWNCSGOOVckoTZpHRlU10PrvFr/EYLC4veUfRUa5ZvTP/ANIJf1HyLR9h4OpxxWFxOCm7XtKL3y5tml2nBP8AqDn1rL4fb9P3vD5n+2fEn+H4RTprSeJnFvrll623/RGMX8Tl+LeCQwlSEKc5TU6bk89rpp2drJabHr/1FxaliI0Y/loUUrLlKdpNf2qn8z3/AOomGnUnQrUoSqU3SklKnFzV21KO3VPQ7C2WX52+jkxlmUn8up/1xeIcDjDB4fEQlOVStVjB09MvqU3FR0vf0pavnyOhX4DgcNkhjsXONecVLLRV4003a79EtLprM7J2emjPdxf+BhOGwreiUcZhZyjLRxjDNKbfwzK/xPT4xxcaVdOfCYYtSpxtiJPmnL+G/wCHK1tHvrm+J3nlev7n9vCd6+Pl8l4l4I8JUjHP5lOpFyp1NsyVrp25q8dVo7r4LXg/AadfDYmvOUlKhCUoJZcrcYOfqur20W1jbxDicTip4en+Blh1GE/KoxvKU08qb1jGySitLaX13R0fDMXHA8QUk4yjTrJxkrSi1RldNcjS55Tj7vf7s5hjeTqdfs8mA4JhaeHp4nHV501Va8uFKN3ZptXtGTeivySOXxzD4eE4/ha7rwlDM8y9VN30Tdlr2smra7nX4bxmtRoU6WLwP4nDSipUnKGuV6q104yeumztYx8ZcLpUJUZ0IypwrwnLyp3vTccj2eq/PquTQsMr5/xX3/hM8Z4bxnrXzt86QkWTmPrjCBI0ITLZUpAyWxOb2uJZFMCMz6lXEugBLZMpCiyHJkyZOZ9SWxxpIAABE6YMAPyceKLDigKNcYlqWiZItiHosazQ7DHEcPYygkNCNIO6BNGsoq2+pmhwvRSSt3N+FcRqYap5lFpSyuLUlmjKLs2mvik/YwJaFrbXDOy7lTi60qk51Kks05ycpO1rt9FySWnsdXhXibFYeHl05xlBbQqwzqH/ABaaaXa9jluIspfGWasa48uUu5e23EMZVxE/Mr1HUlay0SjBdIxWiX15nT4f4rxdCKhGpGcUrRVaGdxXRSTTa+Nzj2FIXhjZrSzlzl3K6E/EWK8+OJdVSqRjKMU4LyoxlvHKuTstb30Wuh9Hw2NaOAx9fFJxlXp1JJytHPnpZY2jyTbSSZ8UzbFY+tUhGnUrznThbLCUvSrbXXO3V3Jlxb1J034+azdy3XS4X4rxdCEacJwnCKSiq0M2RLkmmnZd7ng4nxCriJ+ZXnnla0VbLGC6RitvqeeKVu4M1x48ZdyM7y5WeNvTOWxCNCWjWOlBb2JhuWyu2i5kzZxFKnpe+oilZZhqQZO5MhkeYlsdhqAoqUhxgXlGkV20OAGgF27b1gwA/Kx5ENDQho1xShkyKZLQ1xShiQ0hxoqwJAJGsGAQ5EChyKuJ/vUzbAUPxaMGhJhccVUY3M5Iu9jOQyiJsSZUkZsUaz0uMipPv/2ZIQovitshANIUIzW2lzJI0KlOMLksAYoiLClC5bBiKVnlKSGAl2LBFX0EwKsKWjAGgET3DQ7AfmJHh3IMQxI0jiZLKZEitcSTGmSDYpWmlsm4sxLkaSrMQ5CbATFGsDFcYhwoMxWZ9SGFxxdNUwM1IrOaRPFaIkNMGKLOmckRFG6QnFdBQpkzSNASFcTtncTJzESmWFIpslz7izEjaSLzPqUmZXDMV2ltkykLMS2KLIq5UWZJjUhLprcZjnAWl8XVFcYH5fbwsYm4wAeNKwmSADLFAmAFjeEIAHCgEwAcKAQgHCgAAHChMLjAcIKReYAHHWQ0xAAoP5TcU5gAoeMQ5EAAjisoZAArtlk7ksAHChCGAopCABQgAAJX/9k="
+                    alt="" height="80px">
+
+            </div>
+
+        </div>
+        <div class="row mt-5 mb-2 ml-md-5 mr-md-5">
+            <div class="col-lg-12">
+                <p> Let's start creating the backend with <a target="_blank"
+                        href="https://laravel.com/docs/8.x/releases">Laravel</a> before adding the frontend with <a
+                        target="_blank" href="https://v2.vuejs.org/">Vue.js</a>
+                </p>
+                <h2 class="Title">I-Install Laravel 8</h2>
+
+
+            </div>
+
+        </div>
+        <div class="row ml-md-5 mr-md-5">
+            <div class="col-lg-12">
+                <p>Open terminal further run below command to manifest a new laravel project, ignore this step if
+                    project is already installed</p>
+            </div>
+            <div class="col-lg-8">
+
+                <div class="cmd  " id="cmd-1">
+                    <pre
+                        class="pre-cmd d-flex align-items-center pl-2">composer create-project laravel/laravel:^8.0 Larevel-8-Vue-Js-Crud-App</pre>
+                    <button class="btn-copy" data-toggle="tooltip" data-placement="top" title="Copy to Clipboard"
+                        onclick="CopyToClipboard('cmd-1')">
+                        <i class="fa fa-clipboard"></i>
+                </div>
+            </div>
+
+        </div>
+        <div class="row mt-2 mb-3 ml-md-5 mr-md-5">
+            <div class="col-lg-11">
+
+                <h2 class="Title">II-Database Configuration</h2>
+                <p>This step explains how to make database connection by adding database name, username and password in
+                    .env config file of your project</p>
+
+            </div>
+            <div class="col-md-8">
+                <img src="./images/database_config.png" class="img-fluid">
+            </div>
+
+        </div>
+        <div class="row mt-2 mb-3 ml-md-5 mr-md-5">
+            <div class="col-lg-11">
+
+                <h2 class="Title">III-Migration</h2>
+
+
+            </div>
+            <div class="col-lg-8">
+
+                <div class="cmd  " id="cmd-2">
+                    <pre
+                        class="pre-cmd d-flex align-items-center pl-2">php artisan make:migration create_books_table</pre>
+                    <button class="btn-copy" data-toggle="tooltip" data-placement="top" title="Copy to Clipboard"
+                        onclick="CopyToClipboard('cmd-2')">
+                        <i class="fa fa-clipboard"></i>
+                </div>
+                <p>Edit the migration file and update the up() method</p>
+            </div>
+            <div class="col-lg-12">
+
+                <div class="cmd  " id="cmd-3">
+                    <pre class="pre-cmd d-flex align-items-center pl-2">   &lt;?php
+
+                        use Illuminate\Database\Migrations\Migration;
+                        use Illuminate\Database\Schema\Blueprint;
+                        use Illuminate\Support\Facades\Schema;
+                    
+                        class CreateBooksTable extends Migration
+                        {
+                            /**
+                             * Run the migrations.
+                             *
+                             * @return    void
+                             */
+                            public function up()
+                            {
+                                Schema::create('books', function (Blueprint $table) {
+                                    $table->id();
+                                    $table->string('title');
+                                    $table->text('description');
+                                    $table->string('author');
+                                    $table->string('price');
+                                    $table->timestamps();
+                                });
+                            }
+                    
+                            /**
+                             * Reverse the migrations.
+                             *
+                             * @return    void
+                             */
+                            public function down()
+                            {
+                                Schema::dropIfExists('books');
+                            }
+                        }
+                                            </pre>
+                    <button class="btn-copy" data-toggle="tooltip" data-placement="top" title="Copy to Clipboard"
+                        onclick="CopyToClipboard('cmd-3')">
+                        <i class="fa fa-clipboard"></i>
+                </div>
+                <p>Then run the migration to create the table</p>
+
+            </div>
+            <div class="col-md-8">
+                <div class="cmd  " id="cmd-4">
+                    <pre class="pre-cmd d-flex align-items-center pl-2">php artisan migrate</pre>
+                    <button class="btn-copy" data-toggle="tooltip" data-placement="top" title="Copy to Clipboard"
+                        onclick="CopyToClipboard('cmd-4')">
+                        <i class="fa fa-clipboard"></i>
+                </div>
+            </div>
+
+
+        </div>
+        <div class="row mt-2 mb-3 ml-md-5 mr-md-5">
+            <div class="col-md-11">
+
+                <h2 class="Title">IV-Create CRUD Routes</h2>
+                <p>Open the <span class="text-danger font-weight-bold"> routes/web.php </span>file and define the
+                    following route:</p>
+
+
+            </div>
+            <div class="col-md-10">
+                <div class="cmd  " id="cmd-5">
+                    <pre class="pre-cmd  align-items-center pl-2">
+                        &lt;?php
+
+                        use Illuminate\Support\Facades\Route;
+                         <span class="text-success">
+                            /*
+                        |--------------------------------------------------------------------------
+                        | Web Routes
+                        |--------------------------------------------------------------------------
+                        
+                        */</span>
+                        
+                        Route::fallback(function () {
+                            return view('layout/app');
+                        });
+                        </pre>
+                    <button class="btn-copy" data-toggle="tooltip" data-placement="top" title="Copy to Clipboard"
+                        onclick="CopyToClipboard('cmd-5')">
+                        <i class="fa fa-clipboard"></i>
+                </div>
+
+                <p>
+                    Next, you need to open the <span class="text-danger font-weight-bold">routes/api.php</span> file and
+                    set the CRUD API
+                    routes as given below
+
+                </p>
+                <div class="cmd  " id="cmd-6">
+                    <pre class="pre-cmd  align-items-center pl-2">
+                        &lt;?php
+
+                        use Illuminate\Http\Request;
+                        use Illuminate\Support\Facades\Route;
+                        
+                         <span class="text-success">
+                            /*
+                        |--------------------------------------------------------------------------
+                        | API Routes
+                        |--------------------------------------------------------------------------
+                        
+                        */</span>
+                        
+                        Route::middleware('api')->group(function () {
+                            Route::get('allbooks', [App\Http\Controllers\BookController::class,'index']);
+                            Route::get('book{id}', [App\Http\Controllers\BookController::class,'show']);
+                            Route::post('update{id}', [App\Http\Controllers\BookController::class,'update']);
+                            Route::post('store', [App\Http\Controllers\BookController::class,'store']);
+                            Route::delete('delete{id}', [App\Http\Controllers\BookController::class,'destroy']);
+                        });
+                        </pre>
+                    <button class="btn-copy" data-toggle="tooltip" data-placement="top" title="Copy to Clipboard"
+                        onclick="CopyToClipboard('cmd-6')">
+                        <i class="fa fa-clipboard"></i>
+                </div>
+            </div>
+
+
+        </div>
+        <div class="row mt-2 mb-3 ml-md-5 mr-md-5">
+            <div class="col-lg-11">
+
+                <h2 class="Title">V- Add Controller and Model</h2>
+
+
+            </div>
+            <div class="col-md-8">
+                <div class="cmd  " id="cmd-7">
+                    <pre
+                        class="pre-cmd d-flex align-items-center pl-2">php artisan make:controller BookController --resource --model=Book</pre>
+                    <button class="btn-copy" data-toggle="tooltip" data-placement="top" title="Copy to Clipboard"
+                        onclick="CopyToClipboard('cmd-7')">
+                        <i class="fa fa-clipboard"></i>
+                </div>
+
+
+            </div>
+            <div class="col-md-10">
+                <p>Go to the path:<span class="text-danger font-weight-bold">
+                        app/Http/Controllers/BookController.php</span> And update
+                    the code as follows</p>
+                <div class="cmd  " id="cmd-8">
+                    <pre class="pre-cmd  align-items-center pl-2">
+   &lt;?php
+  namespace App\Http\Controllers;
+
+   use App\Models\Book;
+   use Illuminate\Http\Request;
+                        
+class BookController extends Controller
+{
+
+  public function index()
+ {
+ $books = Book::all();
+ return response()->json($books);
+ }
+                        
+ public function store(Request $request)
+ {
+ $request->validate([
+ 'title' => 'required',
+ 'author' => 'required',
+ 'price' => 'required',
+ ]);
+ Book::create($request->all());
+ return response()->json('Book created!');
+ }
+                        
+public function show($id)
+ {
+ $book = Book::find($id);
+ return response()->json($book);
+ }
+
+public function update(Request $request, $id)
+ {
+ $request->validate([
+ 'title' => 'required',
+ 'author' => 'required',
+ 'price' => 'required',
+ ]);
+ $book = Book::find($id);
+ $book->update($request->all());
+ return response()->json('Book updated!');
+ }
+                        
+ public function destroy($id)
+ {
+ Book::find($id)->delete();
+ return response()->json('Book deleted!');
+ }          
+}
+                        </pre>
+                    <button class="btn-copy" data-toggle="tooltip" data-placement="top" title="Copy to Clipboard"
+                        onclick="CopyToClipboard('cmd-8')">
+                        <i class="fa fa-clipboard"></i>
+                </div>
+            </div>
+            <div class="col-md-10">
+                <p>Define Book table values in <span class="text-danger font-weight-bold ">app/Models/Book.php</span>
+                </p>
+
+                <div class="cmd  " id="cmd-9">
+                    <pre class="pre-cmd  align-items-center pl-2">
+&lt;?php
+namespace App\Models;
+        
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+    class Book extends Model
+             {
+                  use HasFactory;
+                     <span style="color: rgb(234, 255, 0);"> protected $fillable = 
+                        [
+                           'title',
+                           'description',
+                           'author',
+                           'price',
+                        ];
+                    </span>
+             }
+                        </pre>
+                    <button class="btn-copy" data-toggle="tooltip" data-placement="top" title="Copy to Clipboard"
+                        onclick="CopyToClipboard('cmd-9')">
+                        <i class="fa fa-clipboard"></i>
+                </div>
+            </div>
+
+
+
+        </div>
+        <div class="row mt-2 mb-3 ml-md-5 mr-md-5">
+            <div class="col-lg-11 mb-3">
+                <h2 class=" font-weight-bold text-success">VI: Install Vue.js and Create the Frontend Application</h2>
+            </div>
+            <div class="col-lg-11">
+                <h2 class="Title">VI-1:Install Laravel Vue UI</h2>
+                <p>Run composer command to install Vue UI in laravel, it will manifest vue laravel scaffold:</p>
+            </div>
+            <div class="col-lg-8">
+
+                <div class="cmd  " id="cmd-10">
+                    <pre class="pre-cmd d-flex align-items-center pl-2">composer require laravel/ui</pre>
+                    <button class="btn-copy" data-toggle="tooltip" data-placement="top" title="Copy to Clipboard"
+                        onclick="CopyToClipboard('cmd-10')">
+                        <i class="fa fa-clipboard"></i>
+                </div>
+                <div class="cmd  " id="cmd-11">
+                    <pre class="pre-cmd d-flex align-items-center pl-2">php artisan ui vue</pre>
+                    <button class="btn-copy" data-toggle="tooltip" data-placement="top" title="Copy to Clipboard"
+                        onclick="CopyToClipboard('cmd-11')">
+                        <i class="fa fa-clipboard"></i>
+                </div>
+            </div>
+            <div class="col-lg-8">
+                <p>After that, use the command to install the vue router and vue axios packages. These packages are used
+                    to consume Laravel CRUD APIs.</p>
+                <div class="cmd  " id="cmd-12">
+                    <pre class="pre-cmd d-flex align-items-center pl-2">npm install vue-router@2 vue-axios</pre>
+                    <button class="btn-copy" data-toggle="tooltip" data-placement="top" title="Copy to Clipboard"
+                        onclick="CopyToClipboard('cmd-12')">
+                        <i class="fa fa-clipboard"></i>
+                </div>
+                <p>Subsequently, run the command to install the npm packages:</p>
+                <div class="cmd  " id="cmd-13">
+                    <pre class="pre-cmd d-flex align-items-center pl-2">npm install</pre>
+                    <button class="btn-copy" data-toggle="tooltip" data-placement="top" title="Copy to Clipboard"
+                        onclick="CopyToClipboard('cmd-13')">
+                        <i class="fa fa-clipboard"></i>
+                </div>
+                <p>Finally run npm run watch command</p>
+                <div class="cmd  " id="cmd-14">
+                    <pre class="pre-cmd d-flex align-items-center pl-2">npm run watch</pre>
+                    <button class="btn-copy" data-toggle="tooltip" data-placement="top" title="Copy to Clipboard"
+                        onclick="CopyToClipboard('cmd-14')">
+                        <i class="fa fa-clipboard"></i>
+                </div>
+            </div>
+
+
+        </div>
+        <div class="row mt-2 mb-3 ml-md-5 mr-md-5">
+            <div class="col-lg-11">
+
+                <h2 class="Title">VI-2: Set up a vue application in Laravel</h2>
+
+
+            </div>
+            <div class="col-lg-7">
+                <p> -create a layout folder in the <span class="text-primary font-weight-bolder"> resources/views</span>
+                    directory and create an <span class="text-primary font-weight-bolder">app.blade.php</span> file
+                    within the layout folder.</p>
+                <p>-create <span class="text-primary font-weight-bolder">App.vue</span> file in <span
+                        class="text-primary font-weight-bolder">resources/js</span></p>
+                <p>-create the following vue js component files inside the <span
+                        class="text-primary font-weight-bolder">resources/js/components</span> folder</p>
+                <p>-create vue routes, in this step create <span
+                        class="text-primary font-weight-bolder">routes.js</span> inside <span
+                        class="text-primary font-weight-bolder">resources/js</span> directory</p>
+                <p>-Define Vue App.js
+                    This final step brings you to the point where you must include the required packages in the <span
+                        class="text-primary font-weight-bolder">app.js</span> file.</p>
+            </div>
+            <div class="col-lg-5">
+                <img src="/images/view.png" alt="">
+            </div>
+
+
+        </div>
+        <div class="row mt-2 mb-3 ml-md-5 mr-md-5">
+            <div class="col-lg-11">
+
+                <h6 class="font-weight-bold text-info">
+                    resources/views/layout/app.blade.php
+                </h6>
+
+
+            </div>
+            <div class="col-md-12">
+                <div class="cmd  " id="cmd-15">
+                    <pre class="pre-cmd d-flex align-items-center pl-2">
+                        &lt;!doctype html&gt;
+                        &lt;html lang="{{ str_replace('_', '-', app()-&gt;getLocale()) }}"&gt;
+                        &lt;head&gt;
+                            &lt;meta charset="utf-8"&gt;
+                            &lt;meta name="viewport" content="width=device-width, initial-scale=1"&gt;
+                            &lt;meta name="csrf-token" value="{{ csrf_token() }}" /&gt;
+                            &lt;title&gt;Vue JS CRUD Operations in Laravel&lt;/title&gt;
+                            &lt;link href="{{ mix('css/app.css') }}" type="text/css" rel="stylesheet" /&gt;
+                        &lt;/head&gt;
+                        &lt;body&gt;
+                            &lt;div id="app"&gt;&lt;/div&gt;
+                            &lt;script src="{{ mix('js/app.js') }}" type="text/javascript"&gt;&lt;/script&gt;
+                        &lt;/body&gt;
+                        &lt;/html&gt;
+                        
+                     </pre>
+                    <button class="btn-copy" data-toggle="tooltip" data-placement="top" title=""
+                        onclick="CopyToClipboard('cmd-15')" data-original-title="Copy to Clipboard">
+                        <i class="fa fa-clipboard"></i>
+                    </button>
+                </div>
+            </div>
+
+
+        </div>
+        <div class="row mt-2 mb-3 ml-md-5 mr-md-5">
+            <div class="col-lg-11">
+
+                <h6 class="font-weight-bold text-info">
+                    resources/js/App.vue
+                </h6>
+
+
+            </div>
+            <div class="col-md-12">
+                <div class="cmd  " id="cmd-16">
+                    <pre class="pre-cmd d-flex align-items-center pl-2">
+                        &lt;template&gt;
+                        &lt;div class="container"&gt;
+                            &lt;nav class="navbar navbar-expand-lg navbar-light bg-light"&gt;
+                                &lt;div class="collapse navbar-collapse"&gt;
+                                    &lt;div class="navbar-nav"&gt;
+                                        &lt;router-link to="/" class="nav-item nav-link"&gt;Books List&lt;/router-link&gt;
+                                        &lt;router-link to="/create" class="nav-item nav-link"&gt;Create Book&lt;/router-link&gt;
+                                    &lt;/div&gt;
+                                &lt;/div&gt;
+                            &lt;/nav&gt;
+                            &lt;router-view&gt; &lt;/router-view&gt;
+                        &lt;/div&gt;
+                    &lt;/template&gt;
+                    
+                    &lt;script&gt;
+                        export default {}
+                    &lt;/script&gt;
+                    
+                     </pre>
+                    <button class="btn-copy" data-toggle="tooltip" data-placement="top" title=""
+                        onclick="CopyToClipboard('cmd-16')" data-original-title="Copy to Clipboard">
+                        <i class="fa fa-clipboard"></i>
+                    </button>
+                </div>
+            </div>
+
+
+        </div>
+        <div class="row mt-2 mb-3 ml-md-5 mr-md-5">
+            <div class="col-lg-11">
+
+                <h6 class="font-weight-bold text-info">
+                    resources/js/components/AllBook.vue
+                </h6>
+
+
+            </div>
+            <div class="col-md-12">
+                <div class="cmd  " id="cmd-17">
+                    <pre class="pre-cmd d-flex align-items-center pl-2">
+                        &lt;template&gt;
+                        &lt;div&gt;
+                            &lt;h2 class="text-center"&gt;books List&lt;/h2&gt;
+                    
+                            &lt;table class="table"&gt;
+                                &lt;thead&gt;
+                                &lt;tr&gt;
+                                    &lt;th&gt;ID&lt;/th&gt;
+                                    &lt;th&gt;Title&lt;/th&gt;
+                                    &lt;th&gt;Price&lt;/th&gt;
+                                    &lt;th&gt;Description&lt;/th&gt;
+                                    &lt;th&gt;Actions&lt;/th&gt;
+                                &lt;/tr&gt;
+                                &lt;/thead&gt;
+                                &lt;tbody&gt;
+                                &lt;tr v-for="book in books" :key="book.id"&gt;
+                                    &lt;td&gt;{{ book.id }}&lt;/td&gt;
+                                    &lt;td&gt;{{ book.title }}&lt;/td&gt;
+                                    &lt;td&gt;{{ book.price }}&lt;/td&gt;
+                                    &lt;td&gt;{{ book.description }}&lt;/td&gt;
+                                    &lt;td&gt;
+                                        &lt;div class="btn-group" role="group"&gt;
+                                            &lt;router-link :to="{name: 'edit', params: { id: book.id }}" class="btn btn-success"&gt;Edit&lt;/router-link&gt;
+                                            &lt;button class="btn btn-danger" @click="deletebook(book.id)"&gt;Delete&lt;/button&gt;
+                                        &lt;/div&gt;
+                                    &lt;/td&gt;
+                                &lt;/tr&gt;
+                                &lt;/tbody&gt;
+                            &lt;/table&gt;
+                        &lt;/div&gt;
+                    &lt;/template&gt;
+                    
+                    &lt;script&gt;
+                        export default {
+                            mounted() {
+                            console.log('Example component mounted.')
+                        },
+                            data() {
+                                return {
+                                    books: []
+                                }
+                            },
+                            created() {
+                                this.axios
+                                    .get('http://localhost:8000/api/allbooks')
+                                    .then(response =&gt; {
+                                        this.books = response.data;
+                                        console.log(response);
+                                    });
+                            },
+                            methods: {
+                                deletebook(id) {
+                                    this.axios
+                                        .delete(`http://localhost:8000/api/delete${id}`)
+                                        .then(response =&gt; {
+                                            let i = this.books.map(data =&gt; data.id).indexOf(id);
+                                            this.books.splice(i, 1)
+                                        });
+                                }
+                            }
+                        }
+                    &lt;/script&gt;
+                    
+                     </pre>
+                    <button class="btn-copy" data-toggle="tooltip" data-placement="top" title=""
+                        onclick="CopyToClipboard('cmd-17')" data-original-title="Copy to Clipboard">
+                        <i class="fa fa-clipboard"></i>
+                    </button>
+                </div>
+            </div>
+
+
+        </div>
+        <div class="row mt-2 mb-3 ml-md-5 mr-md-5">
+            <div class="col-lg-11">
+
+                <h6 class="font-weight-bold text-info">
+                    resources/js/components/CreateBook.vue
+                </h6>
+
+
+            </div>
+            <div class="col-md-12">
+                <div class="cmd  " id="cmd-18">
+                    <pre class="pre-cmd d-flex align-items-center pl-2">
+                        &lt;template&gt;
+    &lt;div&gt;
+        &lt;h3 class="text-center"&gt;Create book&lt;/h3&gt;
+        &lt;div class="row"&gt;
+            &lt;div class="col-md-6"&gt;
+                &lt;form @submit.prevent="addbook"&gt;
+                    &lt;div class="form-group"&gt;
+                        &lt;label&gt;Title&lt;/label&gt;
+                        &lt;input type="text" class="form-control" v-model="book.title"&gt;
+                    &lt;/div&gt;
+                    &lt;div class="form-group"&gt;
+                        &lt;label&gt;Description&lt;/label&gt;
+                        &lt;input type="text" class="form-control" v-model="book.description"&gt;
+                    &lt;/div&gt;
+                    &lt;div class="form-group"&gt;
+                        &lt;label&gt;Author&lt;/label&gt;
+                        &lt;input type="text" class="form-control" v-model="book.author"&gt;
+                    &lt;/div&gt;
+                    &lt;div class="form-group"&gt;
+                        &lt;label&gt;Price&lt;/label&gt;
+                        &lt;input type="text" class="form-control" v-model="book.price"&gt;
+                    &lt;/div&gt;
+                    &lt;button type="submit" class="btn btn-primary"&gt;Create&lt;/button&gt;
+                &lt;/form&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/template&gt;
+
+&lt;script&gt;
+    export default {
+        data() {
+            return {
+                book: {}
+            }
+        },
+        methods: {
+            addbook() {
+                this.axios
+                    .post('http://localhost:8000/api/store', this.book)
+                    .then(response =&gt; (
+                        this.$router.push({ name: 'home' })
+                    ))
+                    .catch(err =&gt; console.log(err))
+                    .finally(() =&gt; this.loading = false)
+            }
+        }
+    }
+&lt;/script&gt;
+
+                    
+                     </pre>
+                    <button class="btn-copy" data-toggle="tooltip" data-placement="top" title=""
+                        onclick="CopyToClipboard('cmd-18')" data-original-title="Copy to Clipboard">
+                        <i class="fa fa-clipboard"></i>
+                    </button>
+                </div>
+            </div>
+
+
+        </div>
+        <div class="row mt-2 mb-3 ml-md-5 mr-md-5">
+            <div class="col-lg-11">
+
+                <h6 class="font-weight-bold text-info">
+                    resources/js/components/EditBook.vue
+                </h6>
+
+
+            </div>
+            <div class="col-md-12">
+                <div class="cmd  " id="cmd-19">
+                    <pre class="pre-cmd d-flex align-items-center pl-2">
+                        &lt;template&gt;
+                        &lt;div&gt;
+                            &lt;h3 class="text-center"&gt;Edit book&lt;/h3&gt;
+                            &lt;div class="row"&gt;
+                                &lt;div class="col-md-6"&gt;
+                                    &lt;form @submit.prevent="updatebook"&gt;
+                                       &lt;div class="form-group"&gt;
+                                            &lt;label&gt;Title&lt;/label&gt;
+                                            &lt;input type="text" class="form-control" v-model="book.title"&gt;
+                                        &lt;/div&gt;
+                                        &lt;div class="form-group"&gt;
+                                            &lt;label&gt;Description&lt;/label&gt;
+                                            &lt;input type="text" class="form-control" v-model="book.description"&gt;
+                                        &lt;/div&gt;
+                                        &lt;div class="form-group"&gt;
+                                            &lt;label&gt;Author&lt;/label&gt;
+                                            &lt;input type="text" class="form-control" v-model="book.author"&gt;
+                                        &lt;/div&gt;
+                                        &lt;div class="form-group"&gt;
+                                            &lt;label&gt;Price&lt;/label&gt;
+                                            &lt;input type="text" class="form-control" v-model="book.price"&gt;
+                                        &lt;/div&gt;
+                                        &lt;button type="submit" class="btn btn-primary"&gt;Update&lt;/button&gt;
+                                    &lt;/form&gt;
+                                &lt;/div&gt;
+                            &lt;/div&gt;
+                        &lt;/div&gt;
+                    &lt;/template&gt;
+                    
+                    &lt;script&gt;
+                        export default {
+                            data() {
+                                return {
+                                    book: {}
+                                }
+                            },
+                            created() {
+                                this.axios
+                                    .get(`http://localhost:8000/api/book${this.$route.params.id}`)
+                                    .then((res) =&gt; {
+                                        this.book = res.data;
+                                    });
+                            },
+                            methods: {
+                                updatebook() {
+                                    this.axios
+                                        .post(`http://localhost:8000/api/update${this.$route.params.id}`, this.book)
+                                        .then((res) =&gt; {
+                                            this.$router.push({ name: 'home' });
+                                        });
+                                }
+                            }
+                        }
+                    &lt;/script&gt;
+                    
+                     </pre>
+                    <button class="btn-copy" data-toggle="tooltip" data-placement="top" title=""
+                        onclick="CopyToClipboard('cmd-19')" data-original-title="Copy to Clipboard">
+                        <i class="fa fa-clipboard"></i>
+                    </button>
+                </div>
+            </div>
+
+
+        </div>
+        <div class="row mt-2 mb-3 ml-md-5 mr-md-5">
+            <div class="col-lg-11">
+
+                <h6 class="font-weight-bold text-info">
+                    resources/js/routes.js
+                </h6>
+
+
+            </div>
+            <div class="col-md-12">
+                <div class="cmd  " id="cmd-20">
+                    <pre class="pre-cmd d-flex align-items-center pl-2">
+                        import AllBook from './components/AllBook.vue';
+                        import CreateBook from './components/CreateBook.vue';
+                        import EditBook from './components/EditBook.vue';
+                        
+                        export const routes = [
+                            {
+                                name: 'home',
+                                path: '/',
+                                component: AllBook
+                            },
+                            {
+                                name: 'create',
+                                path: '/create',
+                                component: CreateBook
+                            },
+                            {
+                                name: 'edit',
+                                path: '/edit/:id',
+                                component: EditBook
+                            }
+                        ];
+                        
+                     </pre>
+                    <button class="btn-copy" data-toggle="tooltip" data-placement="top" title=""
+                        onclick="CopyToClipboard('cmd-20')" data-original-title="Copy to Clipboard">
+                        <i class="fa fa-clipboard"></i>
+                    </button>
+                </div>
+            </div>
+
+
+        </div>
+        <div class="row mt-2 mb-3 ml-md-5 mr-md-5">
+            <div class="col-lg-11">
+
+                <h6 class="font-weight-bold text-info">
+                    resources/js/app.js
+                </h6>
+
+
+            </div>
+            <div class="col-md-12">
+                <div class="cmd  " id="cmd-21">
+                    <pre class="pre-cmd  align-items-center pl-2">
+                        <span class="text-success">/**
+                        * First we will load all of this project's JavaScript dependencies which
+                        * includes Vue and other libraries. It is a great starting point when
+                        * building robust, powerful web applications using Vue and Laravel.
+                        */</span> 
+                       require('./bootstrap');
+                       window.Vue = require('vue').default;
+                       import App from './App.vue';
+                       import VueAxios from 'vue-axios';
+                       import VueRouter from 'vue-router';
+                       import axios from 'axios';
+                       import { routes } from './routes';
+                        <span class="text-success">/**
+                        * Next, we will create a fresh Vue application instance and attach it to
+                        * the page. Then, you may begin adding components to this application
+                        * or customize the JavaScript scaffolding to fit your unique needs.
+                        */</span> 
+                       Vue.use(VueRouter);
+                       Vue.use(VueAxios, axios);
+                       
+                       const router = new VueRouter({
+                           mode: 'history',
+                           routes: routes
+                       });
+                       
+                       const app = new Vue({
+                           el: '#app',
+                           router: router,
+                           render: h => h(App),
+                       });
+                       
+                     </pre>
+                    <button class="btn-copy" data-toggle="tooltip" data-placement="top" title=""
+                        onclick="CopyToClipboard('cmd-21')" data-original-title="Copy to Clipboard">
+                        <i class="fa fa-clipboard"></i>
+                    </button>
+                </div>
+            </div>
+
+
+        </div>
+        <div class="row mt-2 mb-3 ml-md-5 mr-md-5">
+            <div class="col-lg-11">
+
+                <h2 class="Title">VI-3: Start Laravel Vue CRUD App
+                </h2>
+<p>To start the CRUD app, you need to run the two following commands respectively in two different terminals simultaneously:</p>
+
+            </div>
+          <div class="col-lg-6">
+            <div class="cmd  " id="cmd-22">
+                <pre
+                    class="pre-cmd d-flex align-items-center pl-2">npm run watch</pre>
+                <button class="btn-copy" data-toggle="tooltip" data-placement="top" title="Copy to Clipboard"
+                    onclick="CopyToClipboard('cmd-22')">
+                    <i class="fa fa-clipboard"></i>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <div class="cmd " id="cmd-23">
+                <pre
+                    class="pre-cmd d-flex align-items-center pl-2">php artisan serve</pre>
+                <button class="btn-copy" data-toggle="tooltip" data-placement="top" title="Copy to Clipboard"
+                    onclick="CopyToClipboard('cmd-23')">
+                    <i class="fa fa-clipboard"></i>
+            </div>
+          </div>
+          <div class="col-lg-12">
+            <p>Now you can open the below URL on your browser: <a href="http://127.0.0.1:8000/" target="_blank">http://127.0.0.1:8000/</a></p>
+
+          </div>
+          
+          <a class="btn btn-primary mx-auto" target="_blank" href="https://github.com/aymensmida/Laravel-8-Vue-Js-Crud-App"><i class="fa fa-download" aria-hidden="true"></i> Download Code</a>
+          
+          
+        </div>
+
+    </div>
+
+
+
+</body>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
+    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+    crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+    integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+    crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js"
+    integrity="sha384-+sLIOodYLS7CIrQpBjl+C7nPvqq+FbNUBDunl/OZv93DB7Ln/533i8e/mZXLi/P+"
+    crossorigin="anonymous"></script>
+<script src="./Js/app.js"></script>
+
+</html>

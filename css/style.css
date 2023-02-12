@@ -1,0 +1,47 @@
+body {
+    font: normal normal normal 1rem/1.6 'Montserrat', sans-serif;
+}
+
+p {
+    word-spacing: 1.5px;
+    line-height: 2.25rem;
+    letter-spacing: .4px;
+    font-size: 1.2em;
+}
+
+.cmd {
+    position: relative !important;
+}
+
+.pre-cmd {
+    background-color: black;
+    width: 100%;
+    color: aliceblue;
+    text-align: left !important;
+    border-radius: 5px;
+    padding-top: 5px;
+    min-height: 45px;
+
+}
+
+.btn-copy {
+    color: #ffffff;
+    background-color: rgb(7, 7, 7);
+    border: none;
+    position: absolute;
+    right: 0.5rem;
+    top: 0.5rem;
+}
+
+.first-title {
+    color: rgb(250, 13, 13);
+    font-weight: bold;
+    font-size: 35px;
+}
+
+.Title {
+    color: rgb(250, 2, 2);
+    font-size: 20px;
+    font-family: Lustria, serif;
+    font-weight: 600;
+}
